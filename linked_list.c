@@ -120,6 +120,16 @@ void reverse(){
     A = prev;
     menu();
 }
+void reverse_recursive(struct Node* p){
+    if(p->link == NULL){
+	A= p;
+	return;
+    }
+    reverse_recursive(p->link);
+    struct Node* q = p->link;
+    q->link = p;
+    p->link = NULL;
+}
 void print1(struct Node* p){
     if(p == NULL)
         menu();

@@ -117,6 +117,21 @@ void Postorder(struct Node* root){
    Postorder(root->right);
    printf("%d,"root->data);
 }
+bool isBST(struct Node* root,int* temp,int* g){
+   if(root == NULL)
+	return;
+   if(*g==0)
+	return false;
+   isBST(root->left,temp,g);
+   if(temp == NULL){} 
+   else if(temp>root->data){
+	*g=0;
+	return false;
+   }
+   temp = root->data;
+   isBST(root->right,temp,g);
+   return true;
+}
 void main(){
    struct Node* root = NULL;
 }

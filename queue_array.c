@@ -2,11 +2,11 @@
 #include<stdlib.h>
 int maxsize=100,front = -1,rear = -1;
 int queue[maxsize];
-bool IsEmpty(){
+int IsEmpty(){
 	if(front == -1 && rear == -1)
-		return true;
+		return 0;
 	else
-		return false;
+		return -1;
 }
 int Enqueue(int x){
 	if((rear+1)%maxsize == front){

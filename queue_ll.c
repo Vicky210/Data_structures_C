@@ -41,10 +41,10 @@ int front(){
     printf("\nThe element is:%d",front->data);
     return 0;
 }
-bool IsEmpty(){
+int IsEmpty(){
    if(front == NULL)
-	return true;
-   return false;
+	return 0;
+   return -1;
 }
 void main(){
    front = NULL;

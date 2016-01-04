@@ -30,6 +30,51 @@ bool Search(struct Node* root,int x){
    else
 	return Search(root->right,x);
 }
+int Delete(struct Node* root,int x,struct Node* prev){
+   if(root == NULL)
+        return -1;
+   else if(root->data == x){
+	if(root->left == NULL && root->right ==NULL){
+		free(root);
+		return 0;
+	}
+	else if(root->left == NULL && root->right!=NULL){
+		if(prev->left == root){
+			prev->left = root->right;
+			free(root);
+			return 0;
+		}
+		else{
+			prev->right = root->right;
+			free(root);
+			return 0;
+		}
+	}
+	else if(root->left!=NULL && root->right ==NULL){
+		if(prev->left == root){
+			prev->left = root->left;
+			free(root);
+                        return 0;
+                }
+                else{
+                        prev->right = root->left;
+                        free(root);
+                        return 0;
+                }
+	}
+	else{
+		struct Node* temp = FindMin(root->right);
+		Delete(root,temp->data,prev);
+		root->data = temp->data;
+		return 0;
+	}
+}
+
+   else if(x<=root->data)
+        return Search(root->left,x,root);
+   else
+        return Search(root->right,x,root);
+}
 int FindMin(struct Node* root){
    if(root == NULL){
 	printf("\nThe tree is empty\n");
